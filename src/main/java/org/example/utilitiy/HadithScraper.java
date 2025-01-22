@@ -43,7 +43,6 @@ public class HadithScraper {
 
         WebElement hadithEnglish = hadithContainer.get(random).findElement(By.className("english_hadith_full"));
 
-        driver.close();
         return hadithContainer.get(random);
     }
 
