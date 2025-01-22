@@ -5,22 +5,21 @@ import org.javacord.api.DiscordApi;
 import org.javacord.api.entity.server.Server;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.Set;
 
 import static org.example.Main.DEFAULT_VALUE;
 
-public class HadithTimedRunnable implements Runnable {
+public class AthanCaller implements Runnable {
+    private int prayer; //TODO enum
     private final Map<String, Map.Entry<Double, Double>> serverToLocation;
     private final DiscordApi api;
 
-    public HadithTimedRunnable(Map<String, Map.Entry<Double, Double>> serverToLocation, DiscordApi api) {
+    public AthanCaller(Map<String, Map.Entry<Double, Double>> serverToLocation, DiscordApi api) {
         this.serverToLocation = serverToLocation;
         this.api = api;
     }
-
 
     @Override
     public void run() {
@@ -33,14 +32,18 @@ public class HadithTimedRunnable implements Runnable {
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-            LocalTime fajr = LocalTime.parse(prayTimeBuilder.fajrTime(), formatter);
-            LocalTime dhuhr = LocalTime.parse(prayTimeBuilder.dhuhrTime(), formatter);
-            LocalTime asr = LocalTime.parse(prayTimeBuilder.asrTime(), formatter);
-            LocalTime maghreb = LocalTime.parse(prayTimeBuilder.maghrebTime(), formatter);
-            LocalTime isha = LocalTime.parse(prayTimeBuilder.ishaTime(), formatter);
+            LocalDateTime fajr = LocalDateTime.parse("2007-12-03T10:" + prayTimeBuilder.fajrTime());
+            LocalDateTime dhuhr = LocalDateTime.parse("2007-12-03T10:" + prayTimeBuilder.dhuhrTime());
+            LocalDateTime asr = LocalDateTime.parse("2007-12-03T10:" + prayTimeBuilder.asrTime());
+            LocalDateTime maghreb = LocalDateTime.parse("2007-12-03T10:" + prayTimeBuilder.maghrebTime());
+            LocalDateTime isha = LocalDateTime.parse("2007-12-03T10:" + prayTimeBuilder.ishaTime());
 
-            LocalTime now = LocalTime.now();
+            LocalDateTime now = LocalDateTime.now();
 
+//            if (now.isAfter(fajr) && now.isBefore(dhuhr)) {
+//
+//            }
+            System.out.println(now);
         }
     }
 }

@@ -40,7 +40,7 @@ public class Main {
 
         //TODO implement command pattern for event handling
         api.addMessageCreateListener(new AthanListener(map));
-        //TODO implement daily creation of a random hadith
+        //TODO implement hourly creation of random hadith
         api.addMessageCreateListener(new HadithListener(scraper));
 
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
