@@ -1,7 +1,7 @@
 package org.example;
 
-import org.example.logic.L;
-import org.example.logic.M;
+import org.example.logic.AthanListener;
+import org.example.logic.HadithListener;
 import org.example.utilitiy.HadithScraper;
 import org.example.utilitiy.HadithTimedRunnable;
 import org.javacord.api.DiscordApi;
@@ -39,9 +39,9 @@ public class Main {
         api.addListener((MessageCreateListener) event -> System.out.println(event.getMessage().getContent()));
 
         //TODO implement command pattern for event handling
-        api.addMessageCreateListener(new L(map));
+        api.addMessageCreateListener(new AthanListener(map));
         //TODO implement daily creation of a random hadith
-        api.addMessageCreateListener(new M(scraper));
+        api.addMessageCreateListener(new HadithListener(scraper));
 
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 

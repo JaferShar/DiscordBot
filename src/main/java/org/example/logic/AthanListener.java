@@ -5,15 +5,14 @@ import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 
-import java.util.AbstractMap;
 import java.util.Map;
 
 import static org.example.Main.DEFAULT_VALUE;
 
-public class L implements MessageCreateListener {
+public class AthanListener implements MessageCreateListener {
     private final Map<String, Map.Entry<Double, Double>> serverToLocation;
 
-    public L(Map<String, Map.Entry<Double, Double>> serverToLocation) {
+    public AthanListener(Map<String, Map.Entry<Double, Double>> serverToLocation) {
         this.serverToLocation = serverToLocation;
     }
 

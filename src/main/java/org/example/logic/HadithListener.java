@@ -5,11 +5,11 @@ import org.example.view.HadithEmbed;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 
-public class M implements MessageCreateListener {
+public class HadithListener implements MessageCreateListener {
 
     private final HadithScraper scraper;
 
-    public M(HadithScraper scraper) {
+    public HadithListener(HadithScraper scraper) {
         this.scraper = scraper;
     }
 
