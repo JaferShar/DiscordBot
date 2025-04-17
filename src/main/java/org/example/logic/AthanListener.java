@@ -27,8 +27,5 @@ public class AthanListener implements MessageCreateListener {
             EmbedBuilder embed = new AthanEmbed(location.getKey(), location.getValue());
             event.getChannel().sendMessage(embed);
         }
-        if(event.getMessage().getContent().equalsIgnoreCase("Assalamu alaikum")) {
-            event.getChannel().sendMessage("Ua alaikum assalamu");
-        }
     }
 }
