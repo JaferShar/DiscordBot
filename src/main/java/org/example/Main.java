@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.logic.AthanListener;
 import org.example.logic.HadithListener;
+import org.example.logic.SalamListener;
 import org.example.utilitiy.HadithScraper;
 import org.example.utilitiy.HadithTimedRunnable;
 import org.javacord.api.DiscordApi;
@@ -42,6 +43,7 @@ public class Main {
         api.addMessageCreateListener(new AthanListener(map));
         //TODO implement hourly creation of random hadith
         api.addMessageCreateListener(new HadithListener(scraper));
+        api.addMessageCreateListener(new SalamListener());
 
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
