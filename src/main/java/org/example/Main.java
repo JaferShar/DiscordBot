@@ -45,6 +45,6 @@ public class Main {
 
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
-        scheduler.scheduleAtFixedRate(new HadithTimedRunnable(map, api), 0, 10, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(new HadithTimedRunnable(map, api, scraper), 0, 1, TimeUnit.MINUTES);
     }
 }
