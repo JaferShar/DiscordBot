@@ -40,8 +40,8 @@ public class HadithTimedRunnable implements Runnable {
             prayerTimes.put("Maghreb", LocalTime.parse(prayTimeBuilder.maghrebTime(), formatter));
             prayerTimes.put("Isha", LocalTime.parse(prayTimeBuilder.ishaTime(), formatter));
 
-            LocalTime now = LocalTime.now();
-            //LocalTime now = prayerTimes.get("Fajr");
+            //LocalTime now = LocalTime.now();
+            LocalTime now = prayerTimes.get("Fajr");
 
             for (Map.Entry<String, LocalTime> prayerTime : prayerTimes.entrySet()) {
                 if (now.truncatedTo(java.time.temporal.ChronoUnit.MINUTES).equals(prayerTime.getValue())) {
@@ -50,6 +50,14 @@ public class HadithTimedRunnable implements Runnable {
                     });
                     api.getTextChannelsByName("bait-al-hikma").stream().findFirst().ifPresent(channel -> {
                         channel.sendMessage("Es ist Zeit für " + prayerTime.getKey() + ".\nGeh beten ulan");
+                    });
+                    api.getServerVoiceChannelsByName("athan-channel").stream().findFirst().ifPresent(channel -> {
+                        channel.connect().thenAccept(channel1 -> {
+
+                        }).exceptionally(e -> {
+                            System.out.println("Couldn't connect to the channel");
+                            return null;
+                        });
                     });
                 }
             }

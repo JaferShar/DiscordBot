@@ -40,9 +40,6 @@ public class AthanCaller implements Runnable {
 
             LocalDateTime now = LocalDateTime.now();
 
-//            if (now.isAfter(fajr) && now.isBefore(dhuhr)) {
-//
-//            }
             System.out.println(now);
         }
     }
