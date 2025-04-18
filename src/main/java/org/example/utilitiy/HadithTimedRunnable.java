@@ -45,22 +45,34 @@ public class HadithTimedRunnable implements Runnable {
 
             for (Map.Entry<String, LocalTime> prayerTime : prayerTimes.entrySet()) {
                 if (now.truncatedTo(java.time.temporal.ChronoUnit.MINUTES).equals(prayerTime.getValue())) {
-                    api.getTextChannelsByName("bait-al-hikma").stream().findFirst().ifPresent(channel -> {
-                        channel.sendMessage(new HadithEmbed(scraper.retrieveHadith()));
-                    });
-                    api.getTextChannelsByName("bait-al-hikma").stream().findFirst().ifPresent(channel -> {
-                        channel.sendMessage("Es ist Zeit für " + prayerTime.getKey() + ".\nGeh beten ulan");
-                    });
-                    api.getServerVoiceChannelsByName("athan-channel").stream().findFirst().ifPresent(channel -> {
-                        channel.connect().thenAccept(channel1 -> {
-
-                        }).exceptionally(e -> {
-                            System.out.println("Couldn't connect to the channel");
-                            return null;
-                        });
-                    });
+                    sendHadith();
+                    callToPrayerText(prayerTime);
+                    callToPrayerVoice();
                 }
             }
         }
+    }
+
+    private void sendHadith() {
+        api.getTextChannelsByName("bait-al-hikma").stream().findFirst().ifPresent(channel -> {
+            channel.sendMessage(new HadithEmbed(scraper.retrieveHadith()));
+        });
+    }
+
+    private void callToPrayerText(Map.Entry<String, LocalTime> prayerTime) {
+        api.getTextChannelsByName("bait-al-hikma").stream().findFirst().ifPresent(channel -> {
+            channel.sendMessage("Es ist Zeit für " + prayerTime.getKey() + ".\nGeh beten ulan");
+        });
+    }
+
+    private void callToPrayerVoice() {
+        api.getServerVoiceChannelsByName("athan-channel").stream().findFirst().ifPresent(channel -> {
+            channel.connect().thenAccept(channel1 -> {
+
+            }).exceptionally(e -> {
+                System.out.println("Couldn't connect to the channel");
+                return null;
+            });
+        });
     }
 }
